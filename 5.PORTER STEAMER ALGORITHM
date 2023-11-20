@@ -1,0 +1,14 @@
+from nltk.stem import PorterStemmer
+
+def apply_porter_stemmer(words):
+    stemmer = PorterStemmer()
+    stemmed_words = [stemmer.stem(word) for word in words]
+    return stemmed_words
+input_words = ["jumps", "jumping", "jumper", "jumped", "easily", "running", "flies", "flying", "flies"]
+
+output_words = apply_porter_stemmer(input_words)
+print("Original words:")
+print(input_words)
+
+print("\nWords after stemming:")
+print(output_words)
