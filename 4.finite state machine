@@ -1,0 +1,47 @@
+class VerbStateMachine:
+    def _init_(self):
+        self.state = 'start'
+        self.result = []
+
+    def transition(self, word):
+        transitions = {
+            'start': {'She': 'pronoun', 'He': 'pronoun'},
+            'pronoun': {'walked': 'walk', 'jumped': 'jump'},
+            'walk': {'to': 'to'},
+            'to': {'the': 'article'},
+            'article': {'park': 'end'},
+            'jump': {'over': 'over'},
+            'over': {'the': 'article_jump'},
+            'article_jump': {'fence': 'end'},
+            'end': {}
+        }
+
+        if word in transitions[self.state]:
+            self.state = transitions[self.state][word]
+            if self.state == 'end':
+                self.result.append(self.generate_past_tense())
+        else:
+            self.state = 'start'
+
+    def generate_past_tense(self):
+        mapping = {'walk': 'walked', 'jump': 'jumped'}
+        return mapping.get(self.state, self.state)
+
+    def parse_sentence(self, sentence):
+        words = sentence.split()
+        for word in words:
+            self.transition(word)
+
+    def get_past_tense_results(self):
+        return self.result
+
+# Example usage:
+sentences = ["She walked to the park yesterday", "He jumped over the fence"]
+
+verb_fsm = VerbStateMachine()
+
+for sentence in sentences:
+    verb_fsm.parse_sentence(sentence)
+
+past_tense_results = verb_fsm.get_past_tense_results()
+print(past_tense_results)
