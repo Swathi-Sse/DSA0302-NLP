@@ -1,0 +1,156 @@
+import nltk
+nltk.download('wordnet')
+
+     
+[nltk_data] Downloading package wordnet to /root/nltk_data...
+True
+
+from nltk.corpus import wordnet
+
+def explore_word_meanings(sentence):
+    words = sentence.split()
+    for word in words:
+        synsets = wordnet.synsets(word)
+        if synsets:
+            print(f"\nWord: {word}")
+            print("Definitions:")
+            for synset in synsets:
+                print(f"- {synset.definition()}")
+            print("Synonyms:")
+            synonyms = set()
+            for synset in synsets:
+                synonyms.update(synset.lemma_names())
+            print(f"- {', '.join(synonyms)}")
+
+# Given sentences
+sentences = [
+    "The cat sat on the mat.",
+    "The dog barked loudly.",
+    "She played the piano beautifully.",
+]
+
+# Explore word meanings for each sentence
+for i, sentence in enumerate(sentences):
+    print(f"\nSentence {i + 1}: {sentence}")
+    explore_word_meanings(sentence)
+
+     
+Sentence 1: The cat sat on the mat.
+
+Word: cat
+Definitions:
+- feline mammal usually having thick soft fur and no ability to roar: domestic cats; wildcats
+- an informal term for a youth or man
+- a spiteful woman gossip
+- the leaves of the shrub Catha edulis which are chewed like tobacco or used to make tea; has the effect of a euphoric stimulant
+- a whip with nine knotted cords
+- a large tracked vehicle that is propelled by two endless metal belts; frequently used for moving earth in construction and farm work
+- any of several large cats typically able to roar and living in the wild
+- a method of examining body organs by scanning them with X rays and using a computer to construct a series of cross-sectional scans along a single axis
+- beat with a cat-o'-nine-tails
+- eject the contents of the stomach through the mouth
+Synonyms:
+- puke, disgorge, bozo, upchuck, Caterpillar, computerized_axial_tomography, guy, true_cat, regorge, spue, kat, cast, computed_axial_tomography, cat, purge, cat-o'-nine-tails, vomit_up, computed_tomography, chuck, computerized_tomography, qat, barf, be_sick, CT, vomit, spew, retch, African_tea, khat, regurgitate, honk, Arabian_tea, hombre, sick, big_cat, quat, throw_up, CAT
+
+Word: sat
+Definitions:
+- the seventh and last day of the week; observed as the Sabbath by Jews and some Christians
+- be seated
+- be around, often idly or without specific purpose
+- take a seat
+- be in session
+- assume a posture as for artistic purposes
+- sit and travel on the back of animal, usually while controlling its motions
+- be located or situated somewhere
+- work or act as a baby-sitter
+- show to a seat; assign a seat for
+- serve in a specific professional capacity
+Synonyms:
+- baby-sit, Saturday, pose, seat, model, Sabbatum, ride, sit_down, Sat, sit_around, sit, posture
+
+Word: on
+Definitions:
+- in operation or operational
+- (of events) planned or scheduled
+- with a forward motion
+- indicates continuity or persistence or concentration
+- in a state required for something to function or be effective
+Synonyms:
+- along, on
+
+Sentence 2: The dog barked loudly.
+
+Word: dog
+Definitions:
+- a member of the genus Canis (probably descended from the common wolf) that has been domesticated by man since prehistoric times; occurs in many breeds
+- a dull unattractive unpleasant girl or woman
+- informal term for a man
+- someone who is morally reprehensible
+- a smooth-textured sausage of minced beef or pork usually smoked; often served on a bread roll
+- a hinged catch that fits into a notch of a ratchet to move a wheel forward or prevent it from moving backward
+- metal supports for logs in a fireplace
+- go after with the intent to catch
+Synonyms:
+- chase_after, blackguard, andiron, go_after, frank, track, chase, pawl, heel, Canis_familiaris, weenie, trail, cad, hot_dog, tag, dog, hound, give_chase, wiener, click, frump, domestic_dog, wienerwurst, dog-iron, tail, detent, frankfurter, hotdog, firedog, bounder
+
+Word: barked
+Definitions:
+- speak in an unfriendly tone
+- cover with bark
+- remove the bark of a tree
+- make barking sounds
+- tan (a skin) with bark tannins
+Synonyms:
+- bark, skin
+
+Sentence 3: She played the piano beautifully.
+
+Word: played
+Definitions:
+- participate in games or sport
+- act or have an effect in a specified way or with a specific effect or outcome
+- play on an instrument
+- play a role or part
+- be at play; be engaged in playful activity; amuse oneself in a way characteristic of children
+- replay (as a melody)
+- perform music on (a musical instrument)
+- pretend to have certain qualities or state of mind
+- move or seem to move quickly, lightly, or irregularly
+- bet or wager (money)
+- engage in recreational activities rather than work; occupy oneself in a diversion
+- pretend to be somebody in the framework of a game or playful activity
+- emit recorded sound
+- perform on a certain location
+- put (a card or piece) into play during a game, or act strategically as if in a card game
+- engage in an activity as if it were a game rather than take it seriously
+- behave in a certain way
+- cause to emit recorded audio or video
+- manipulate manually or in one's mind or imagination
+- use to one's advantage
+- consider not very seriously
+- be received or accepted or interpreted in a specific way
+- behave carelessly or indifferently
+- cause to move or operate freely within a bounded space
+- perform on a stage or theater
+- be performed or presented for public viewing
+- cause to happen or to occur as a consequence
+- discharge or direct or be discharged or directed as if in a continuous stream
+- make bets
+- stake on the outcome of an issue
+- shoot or hit in a particular manner
+- use or move
+- employ in a game or in a specific position
+- contend against an opponent in a sport, game, or battle
+- exhaust by allowing to pull on the line
+- (of games) engaged in
+Synonyms:
+- wreak, roleplay, meet, bet, make_for, work, recreate, toy, act, spiel, trifle, diddle, encounter, played, dally, playact, wager, take_on, play, fiddle, bring, represent, run, flirt, act_as
+
+Word: piano
+Definitions:
+- a keyboard instrument that is played by depressing keys that cause hammers to strike tuned strings and produce sounds
+- (music) low loudness
+- used chiefly as a direction or description in music
+- used as a direction in music; to be played relatively softly
+Synonyms:
+- soft, forte-piano, pianissimo, piano, softly, pianoforte
