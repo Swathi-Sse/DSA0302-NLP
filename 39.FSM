@@ -1,0 +1,44 @@
+class DateFSM:
+    def __init__(self):
+        self.states = {'start', 'day1', 'day2', 'slash1', 'month1', 'month2', 'slash2', 'year1', 'year2', 'year3', 'year4'}
+        self.accept_states = {'year4'}
+        self.transitions = {
+            'start': {'0': 'day1', '1-3': 'day2', '4': 'month1', '5': 'month2'},
+            'day1': {'0-2': 'slash1', '3': 'slash1', '4-9': 'day2'},
+            'day2': {'0-9': 'slash1'},
+            'slash1': {'/': 'month1'},
+            'month1': {'0': 'month2', '1-2': 'slash2', '3': 'slash2'},
+            'month2': {'0-9': 'slash2'},
+            'slash2': {'/': 'year1'},
+            'year1': {'0-2': 'year2', '3': 'year2', '4': 'year2'},
+            'year2': {'0-9': 'year3'},
+            'year3': {'0-9': 'year4'},
+            'year4': {}  # Accept state
+        }
+
+    def is_valid_date(self, input_str):
+        current_state = 'start'
+
+        for char in input_str:
+            digit_range = '0-9'
+            if char in digit_range:
+                char_class = char
+            else:
+                char_class = 'other'
+
+            if char_class not in self.transitions[current_state]:
+                return False
+
+            current_state = self.transitions[current_state][char_class]
+
+        return current_state in self.accept_states
+
+
+# Example usage:
+date_fsm = DateFSM()
+input_date = input("Enter a date (DD/MM/YYYY): ")
+
+if date_fsm.is_valid_date(input_date):
+    print("Valid date!")
+else:
+    print("Invalid date!")
